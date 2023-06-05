@@ -1,4 +1,4 @@
-function NavBar() {
+function NavBar(props) {
   return (
     <div className="flex justify-center items-center h-screen bg-gradient-to-br from-gray-900 to-gray-800">
       <div className="text-center">
@@ -6,11 +6,11 @@ function NavBar() {
           Join the BlueBabble Community
         </h1>
         <div className="space-x-4">
-          <button className="text-white bg-blue-400 py-3 px-6 rounded-full text-xl">
-            Login
-          </button>
-          <button className="text-white bg-blue-400 py-3 px-6 rounded-full text-xl">
-            Create Account
+          <button
+            className="text-white bg-blue-400 py-3 px-6 rounded-full text-xl"
+            onClick={props.SetLoggedInCoin(true)}
+          >
+            Go To BlueBabble
           </button>
         </div>
       </div>

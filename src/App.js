@@ -1,9 +1,19 @@
+import { Fragment, useState } from "react";
 import NavBar from "./Components/NavBar";
+import MainPage from "./Components/MainPage";
 
 function App() {
+  const [loggedInCoin, setLoggedInCoin] = useState(false);
+
   return (
     <div>
-      <NavBar />
+      <Fragment>
+        {loggedInCoin ? (
+          <MainPage />
+        ) : (
+          <NavBar loggedInCoin={setLoggedInCoin} />
+        )}
+      </Fragment>
     </div>
   );
 }
