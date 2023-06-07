@@ -1,20 +1,15 @@
 import { Fragment, useState } from "react";
-import NavBar from "./Components/NavBar";
+
 import MainPage from "./Components/MainPage";
+import WelcomePage from "./Components/WelcomePage";
 
 function App() {
-  const [loggedInCoin, setLoggedInCoin] = useState(false);
+  const [LoggedIn, setLoggedIn] = useState(false);
 
   return (
-    <div>
-      <Fragment>
-        {loggedInCoin ? (
-          <MainPage />
-        ) : (
-          <NavBar loggedInCoin={setLoggedInCoin} />
-        )}
-      </Fragment>
-    </div>
+    <Fragment>
+      {LoggedIn ? <MainPage /> : <WelcomePage loggedIn={setLoggedIn} />}
+    </Fragment>
   );
 }
 
