@@ -4,6 +4,7 @@ import meme1 from "../Images/meme1.jpg";
 import meme2 from "../Images/meme2.jpg";
 import meme3 from "../Images/meme3.png";
 import meme4 from "../Images/meme4.jpg";
+import NavBar from "./NavBar.js";
 
 function MainPage() {
   const fakePosts = [
@@ -123,18 +124,13 @@ function MainPage() {
 
   return (
     <div className="bg-gradient-to-br from-blue-200 to-blue-300 min-h-screen text-gray-800">
-      <header className="bg-white shadow-md border-b border-gray-200 px-4 py-2 flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-blue-700">BlueBabble</h1>
-        </div>
-        <div>{/* Add header buttons or user profile */}</div>
-      </header>
+      <NavBar />
 
-      <main className="flex">
+      <main className="flex pt-12">
         {sidebarOpen && (
           <div className="w-1/4 p-4 bg-white border-r border-gray-200">
             <div>
-              <h2 className="text-lg font-semibold mb-4">Sidebar</h2>
+              <h2 className="text-lg font-semibold mb-4 ">Sidebar</h2>
               <ul>
                 <button
                   onClick={() => setActiveButton("User Info")}
@@ -163,7 +159,7 @@ function MainPage() {
 
         <div className="flex-1 p-4 bg-gray-100">
           <div>
-            <h2 className="text-lg font-semibold mb-4">Feed</h2>
+            <h2 className="text-lg font-semibold mb-4 text-center">Feed</h2>
             <div>
               {fakePosts.map((post) => (
                 <div
@@ -197,7 +193,7 @@ function MainPage() {
 
         {!sidebarOpen && (
           <button
-            className="fixed top-4 right-4 text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-full shadow-md z-10"
+            className="fixed top-14 left-1 text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-full shadow-md z-10"
             onClick={() => setSidebarOpen(true)}
           >
             <svg
@@ -227,7 +223,7 @@ function MainPage() {
       {sidebarOpen && (
         <div className="fixed top-0 left-0 w-1/4 h-full bg-white border-r border-gray-200">
           <button
-            className="absolute top-4 right-4 text-gray-700 hover:text-gray-900 bg-white hover:bg-gray-200 px-4 py-2 rounded-full"
+            className="absolute top-0.5 right-2 text-white bg-blue-500 hover:bg-blue-600  px-4 py-2 rounded-full"
             onClick={() => setSidebarOpen(false)}
           >
             <svg
@@ -246,7 +242,9 @@ function MainPage() {
             </svg>
           </button>
           <div>
-            <h2 className="text-lg font-semibold mb-4">Sidebar</h2>
+            <h2 className="text-lg font-semibold mb-4 text-center">
+              Info & Settings
+            </h2>
             <ul>
               <button
                 onClick={() => setActiveButton("User Info")}
@@ -256,7 +254,7 @@ function MainPage() {
                     : "bg-blue-200 text-blue-700"
                 } block w-full py-2 px-4 rounded mb-2`}
               >
-                User Info
+                Account Info
               </button>
               <button
                 onClick={() => setActiveButton("Navigation")}
@@ -276,18 +274,26 @@ function MainPage() {
       {activeButton && (
         <Modal onClose={() => setActiveButton(null)}>
           {activeButton === "User Info" && (
-            <div>
-              <h3>User Info</h3>
-              <p>Name: Timmy Phelps</p>
-              <p>Birthday: 06/23/2000</p>
-              <p>Favorite Color: Blue</p>
+            <div className="w-80 p-4 bg-gray-800">
+              <h3 className="text-blue-500 p-2 font-bold text-xl text-center">
+                User Info
+              </h3>
+              <div className="bg-white rounded p-2">
+                <p>Name: Timmy Phelps</p>
+                <p>Birthday: 06/23/2000</p>
+                <p>Favorite Color: Blue</p>
+              </div>
             </div>
           )}
           {activeButton === "Navigation" && (
-            <div>
-              <h3>Settings</h3>
-              <p>Language: English</p>
-              <p>Theme: Light</p>
+            <div className="w-80 p-4 bg-gray-800">
+              <h3 className="text-blue-500 p-2 font-bold text-xl text-center">
+                Settings
+              </h3>
+              <div className="bg-white rounded p-2">
+                <p>Language: English</p>
+                <p>Theme: Light</p>
+              </div>
             </div>
           )}
         </Modal>
