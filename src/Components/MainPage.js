@@ -121,10 +121,24 @@ function MainPage() {
 
   const [activeButton, setActiveButton] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [posts, setPosts] = useState(fakePosts); // State to store posts
+
+  const handlePostSubmit = (content) => {
+    const newPost = {
+      id: fakePosts.length + 1,
+      author: "Name", // You can replace this with the actual author's name
+      content: content,
+    };
+    setPosts([...posts, newPost]);
+  };
 
   return (
     <div className="bg-gradient-to-br from-blue-200 to-blue-300 min-h-screen text-gray-800">
-      <NavBar />
+      <NavBar
+        onPostSubmit={handlePostSubmit}
+        posts={posts}
+        setPosts={setPosts}
+      />
 
       <main className="flex pt-12">
         {sidebarOpen && (
