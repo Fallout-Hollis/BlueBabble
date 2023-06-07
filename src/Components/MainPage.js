@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import Modal from "./Modal";
+import meme1 from "../Images/meme1.jpg";
+import meme2 from "../Images/meme2.jpg";
+import meme3 from "../Images/meme3.png";
+import meme4 from "../Images/meme4.jpg";
 
 function MainPage() {
   const fakePosts = [
@@ -98,99 +102,149 @@ function MainPage() {
   const fakeTrendingPosts = [
     {
       id: 1,
-      topic: "ReactJS",
+      image: meme1,
     },
     {
       id: 2,
-      topic: "Foodie",
+      image: meme2,
     },
     {
       id: 3,
-      topic: "Fitness ",
+      image: meme3,
     },
     {
       id: 4,
-      topic: "Artificial Intelligence",
-    },
-    {
-      id: 5,
-      topic: "Nature ",
-    },
-    {
-      id: 6,
-      topic: "Machine Learning",
-    },
-    {
-      id: 7,
-      topic: "Python",
-    },
-    {
-      id: 8,
-      topic: "UI/UX Design",
-    },
-    {
-      id: 9,
-      topic: "Mobile App Development",
-    },
-    {
-      id: 10,
-      topic: "Reading",
-    },
-    {
-      id: 11,
-      topic: "Cloud Computing",
-    },
-    {
-      id: 12,
-      topic: "Blockchain",
-    },
-    {
-      id: 13,
-      topic: "Data Analytics",
-    },
-    {
-      id: 14,
-      topic: "Internet of Things",
-    },
-    {
-      id: 15,
-      topic: "Big Data",
-    },
-    {
-      id: 16,
-      topic: "Front-end Development",
-    },
-    {
-      id: 17,
-      topic: "Back-end Development",
-    },
-    {
-      id: 18,
-      topic: "DevOps",
-    },
-    {
-      id: 19,
-      topic: "Agile Methodology",
-    },
-    {
-      id: 20,
-      topic: "UI/UX Research",
+      image: meme4,
     },
   ];
 
   const [activeButton, setActiveButton] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="bg-blue-100 min-h-screen">
-      <header className="bg-white border-b border-gray-300 px-4 py-2 flex items-center justify-between">
+    <div className="bg-gradient-to-br from-blue-200 to-blue-300 min-h-screen text-gray-800">
+      <header className="bg-white shadow-md border-b border-gray-200 px-4 py-2 flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold">BlueBabble</h1>
+          <h1 className="text-2xl font-bold text-blue-700">BlueBabble</h1>
         </div>
         <div>{/* Add header buttons or user profile */}</div>
       </header>
 
       <main className="flex">
-        <div className="w-1/4 p-4 bg-white border-r border-gray-300">
+        {sidebarOpen && (
+          <div className="w-1/4 p-4 bg-white border-r border-gray-200">
+            <div>
+              <h2 className="text-lg font-semibold mb-4">Sidebar</h2>
+              <ul>
+                <button
+                  onClick={() => setActiveButton("User Info")}
+                  className={`${
+                    activeButton === "User Info"
+                      ? "bg-blue-500 text-white"
+                      : "bg-blue-200 text-blue-700"
+                  } block w-full py-2 px-4 rounded mb-2`}
+                >
+                  User Info
+                </button>
+                <button
+                  onClick={() => setActiveButton("Navigation")}
+                  className={`${
+                    activeButton === "Navigation"
+                      ? "bg-blue-500 text-white"
+                      : "bg-blue-200 text-blue-700"
+                  } block w-full py-2 px-4 rounded`}
+                >
+                  Settings
+                </button>
+              </ul>
+            </div>
+          </div>
+        )}
+
+        <div className="flex-1 p-4 bg-gray-100">
+          <div>
+            <h2 className="text-lg font-semibold mb-4">Feed</h2>
+            <div>
+              {fakePosts.map((post) => (
+                <div
+                  key={post.id}
+                  className="bg-white shadow-md rounded-lg p-4 mb-4"
+                >
+                  <p className="font-bold">{post.author}</p>
+                  <p>{post.content}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="w-1/4 p-4 bg-gray-800 text-white border-l border-gray-200">
+          <div>
+            <h2 className="text-lg font-semibold mb-4">Trending Memes</h2>
+            <ul className="flex flex-col items-center">
+              {fakeTrendingPosts.map((post) => (
+                <li key={post.id} className="flex items-center mb-2">
+                  <img
+                    src={post.image}
+                    alt={`Trending meme ${post.id}`}
+                    className="w-100 h-80 object-cover mr-2"
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {!sidebarOpen && (
+          <button
+            className="fixed top-4 right-4 text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-full shadow-md z-10"
+            onClick={() => setSidebarOpen(true)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        )}
+      </main>
+
+      <footer className="bg-white border-t border-gray-200 px-4 py-2">
+        <div>
+          <p>&copy; 2023 BlueBabble. All rights reserved.</p>
+        </div>
+      </footer>
+
+      {sidebarOpen && (
+        <div className="fixed top-0 left-0 w-1/4 h-full bg-white border-r border-gray-200">
+          <button
+            className="absolute top-4 right-4 text-gray-700 hover:text-gray-900 bg-white hover:bg-gray-200 px-4 py-2 rounded-full"
+            onClick={() => setSidebarOpen(false)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
           <div>
             <h2 className="text-lg font-semibold mb-4">Sidebar</h2>
             <ul>
@@ -217,43 +271,7 @@ function MainPage() {
             </ul>
           </div>
         </div>
-
-        <div className="flex-1 p-4">
-          <div>
-            <h2 className="text-lg font-semibold mb-4">Feed</h2>
-            <div>
-              {fakePosts.map((post) => (
-                <div
-                  key={post.id}
-                  className="bg-white border border-gray-300 p-4 mb-4"
-                >
-                  <p className="font-bold">{post.author}</p>
-                  <p>{post.content}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="w-1/4 p-4 bg-white border-l border-gray-300">
-          <div>
-            <h2 className="text-lg font-semibold mb-4">Trending Hashtags</h2>
-            <ul>
-              {fakeTrendingPosts.map((post) => (
-                <li key={post.id} className="flex items-center mb-2">
-                  <span>{post.topic}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </main>
-
-      <footer className="bg-white border-t border-gray-300 px-4 py-2">
-        <div>
-          <p>&copy; 2023 BlueBabble. All rights reserved.</p>
-        </div>
-      </footer>
+      )}
 
       {activeButton && (
         <Modal onClose={() => setActiveButton(null)}>
