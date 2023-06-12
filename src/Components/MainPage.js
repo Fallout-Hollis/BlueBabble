@@ -6,7 +6,7 @@ import meme3 from "../Images/meme3.png";
 import meme4 from "../Images/meme4.jpg";
 import NavBar from "./NavBar.js";
 
-function MainPage() {
+function MainPage({ user }) {
   const fakePosts = [
     {
       id: 1,
@@ -126,7 +126,7 @@ function MainPage() {
   const handlePostSubmit = (content) => {
     const newPost = {
       id: fakePosts.length + 1,
-      author: "Name", // You can replace this with the actual author's name
+      author: user.name, // Author's name
       content: content,
     };
     setPosts([...posts, newPost]);
@@ -175,15 +175,18 @@ function MainPage() {
           <div>
             <h2 className="text-lg font-semibold mb-4 text-center">Feed</h2>
             <div>
-              {fakePosts.map((post) => (
-                <div
-                  key={post.id}
-                  className="bg-white shadow-md rounded-lg p-4 mb-4"
-                >
-                  <p className="font-bold">{post.author}</p>
-                  <p>{post.content}</p>
-                </div>
-              ))}
+              {posts
+                .slice(0)
+                .reverse()
+                .map((post) => (
+                  <div
+                    key={post.id}
+                    className="bg-white shadow-md rounded-lg p-4 mb-4"
+                  >
+                    <p className="font-bold">{post.author}</p>
+                    <p>{post.content}</p>
+                  </div>
+                ))}
             </div>
           </div>
         </div>
@@ -231,6 +234,7 @@ function MainPage() {
       <footer className="bg-white border-t border-gray-200 px-4 py-2">
         <div>
           <p>&copy; 2023 BlueBabble. All rights reserved.</p>
+          {user && <p>Logged in as {user.name}.</p>}
         </div>
       </footer>
 
@@ -293,9 +297,9 @@ function MainPage() {
                 User Info
               </h3>
               <div className="bg-white rounded p-2">
-                <p>Name: Timmy Phelps</p>
+                <p>Name: {user.name}</p>
                 <p>Birthday: 06/23/2000</p>
-                <p>Favorite Color: Blue</p>
+                <p>Favorite Color: {user.favoriteColor}</p>
               </div>
             </div>
           )}

@@ -29,7 +29,7 @@ const NavBar = ({ onPostSubmit, posts, setPosts }) => {
 
       {showPostModal && (
         <PostModal onClose={() => setShowPostModal(false)}>
-          <form onSubmit={handlePostSubmit} className="p-4 bg-white">
+          <form onSubmit={handlePostSubmit} className="p-4  bg-white">
             <textarea
               className="border border-gray-300 rounded p-2 w-full"
               placeholder="Write your post here..."

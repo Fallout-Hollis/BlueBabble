@@ -5,10 +5,15 @@ import WelcomePage from "./Components/WelcomePage";
 
 function App() {
   const [LoggedIn, setLoggedIn] = useState(false);
+  const [userData, setUserData] = useState();
 
   return (
     <Fragment>
-      {LoggedIn ? <MainPage /> : <WelcomePage loggedIn={setLoggedIn} />}
+      {LoggedIn ? (
+        <MainPage user={userData} />
+      ) : (
+        <WelcomePage loggedIn={setLoggedIn} userdata={setUserData} />
+      )}
     </Fragment>
   );
 }
