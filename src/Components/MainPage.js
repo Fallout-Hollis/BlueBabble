@@ -171,9 +171,11 @@ function MainPage({ user }) {
           </div>
         )}
 
-        <div className="flex-1 p-4 bg-gray-100">
+        <div className="flex-1 p-4 bg-gray-600 ">
           <div>
-            <h2 className="text-lg font-semibold mb-4 text-center">Feed</h2>
+            <h2 className="text-lg font-semibold mb-4 text-center text-white">
+              Feed
+            </h2>
             <div>
               {posts
                 .slice(0)
@@ -231,15 +233,15 @@ function MainPage({ user }) {
         )}
       </main>
 
-      <footer className="bg-white border-t border-gray-200 px-4 py-2">
-        <div>
+      <footer className="bg-gray-800 border-t border-gray-200 px-4 py-2">
+        <div className="text-white">
           <p>&copy; 2023 BlueBabble. All rights reserved.</p>
           {user && <p>Logged in as {user.name}.</p>}
         </div>
       </footer>
 
       {sidebarOpen && (
-        <div className="fixed top-0 left-0 w-1/4 h-full bg-white border-r border-gray-200">
+        <div className="fixed top-0 left-0 w-1/4 h-full bg-gray-800 border-r border-gray-200">
           <button
             className="absolute top-0.5 right-2 text-white bg-blue-500 hover:bg-blue-600  px-4 py-2 rounded-full"
             onClick={() => setSidebarOpen(false)}
@@ -260,7 +262,7 @@ function MainPage({ user }) {
             </svg>
           </button>
           <div>
-            <h2 className="text-lg font-semibold mb-4 text-center">
+            <h2 className="text-lg font-semibold mb-4 text-center text-white">
               Info & Settings
             </h2>
             <ul>
