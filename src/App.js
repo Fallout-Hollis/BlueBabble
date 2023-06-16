@@ -10,7 +10,7 @@ function App() {
   return (
     <Fragment>
       {LoggedIn ? (
-        <MainPage user={userData} />
+        <MainPage user={userData} loggedIn={setLoggedIn} />
       ) : (
         <WelcomePage loggedIn={setLoggedIn} userdata={setUserData} />
       )}

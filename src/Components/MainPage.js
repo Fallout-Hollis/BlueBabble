@@ -5,8 +5,9 @@ import meme2 from "../Images/meme2.jpg";
 import meme3 from "../Images/meme3.png";
 import meme4 from "../Images/meme4.jpg";
 import NavBar from "./NavBar.js";
+import LogoutButton from "./LogoutButton";
 
-function MainPage({ user }) {
+function MainPage({ user, loggedIn }) {
   const fakePosts = [
     {
       id: 1,
@@ -125,7 +126,7 @@ function MainPage({ user }) {
 
   const handlePostSubmit = (content) => {
     const newPost = {
-      id: fakePosts.length + 1,
+      id: posts.length + 1,
       author: user.name, // Author's name
       content: content,
     };
@@ -286,6 +287,7 @@ function MainPage({ user }) {
               >
                 Settings
               </button>
+              <LogoutButton loggedIn={loggedIn} />
             </ul>
           </div>
         </div>
