@@ -302,7 +302,7 @@ function MainPage({ user, loggedIn }) {
               </h3>
               <div className="bg-white rounded p-2">
                 <p>Name: {user.name}</p>
-                <p>Birthday: 06/23/2000</p>
+                <p>Birthday: 06/23/1776</p>
                 <p>Favorite Color: {user.favoriteColor}</p>
               </div>
             </div>
@@ -314,7 +314,7 @@ function MainPage({ user, loggedIn }) {
               </h3>
               <div className="bg-white rounded p-2">
                 <p>Language: English</p>
-                <p>Theme: Light</p>
+                <p>Theme: Dark</p>
               </div>
             </div>
           )}
